@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Save Environment – Clean India, Green India</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Basic reset & variables */
+    :root{
+      --saffron:#ff9933;
+      --green:#138808;
+      --chakra:#0c5aa6;
+      --muted:#5b6468;
+      --glass: rgba(255,255,255,0.86);
+      --card-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      --max-width:1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:'Poppins',system-ui,Arial;
+      background: linear-gradient(180deg,#f4fbf4 0%, #eef7ee 100%);
+      color:#12202a;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      scroll-behavior:smooth;
+    }
+
+    /* Container to center content */
+    .container{
+      max-width:var(--max-width);
+      margin:0 auto;
+      padding:20px;
+    }
+
+    /* Header */
+    header{
+      background: linear-gradient(90deg,var(--saffron),#ffffff,var(--green));
+      position: sticky;
+      top:0;
+      z-index:999;
+      box-shadow:0 2px 6px rgba(0,0,0,0.06);
+    }
+    .header-inner{
+      max-width:var(--max-width);
+      margin:0 auto;
+      padding:12px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .brand{
+      display:flex;gap:12px;align-items:center;text-decoration:none;color:#073b07;
+    }
+    .brand .logo{
+      width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:#fff;font-weight:700;color:var(--chakra);
+      box-shadow:0 4px 10px rgba(0,0,0,0.08);
+      font-size:20px;
+    }
+    .brand h1{margin:0;font-family:'Merriweather',serif;font-size:1.05rem}
+    .brand p{margin:0;font-size:0.78rem;opacity:0.9}
+
+    nav{display:flex;gap:8px;align-items:center}
+    nav a{
+      display:inline-block;padding:8px 10px;border-radius:8px;text-decoration:none;color:#064b06;font-weight:600;
+    }
+    nav a:hover, nav a.active{background:rgba(255,255,255,0.75);box-shadow:0 2px 6px rgba(0,0,0,0.04)}
+
+    .nav-toggle{
+      display:none;background:transparent;border:0;font-size:22px;cursor:pointer;
+    }
+
+    /* Hero */
+    .hero{
+      margin-top:22px;
+      background:var(--glass);
+      border-radius:12px;
+      box-shadow:var(--card-shadow);
+      padding:24px;
+      display:grid;
+      grid-template-columns:1fr 320px;
+      gap:20px;
+      align-items:center;
+    }
+    .hero h2{margin:0;font-family:'Merriweather',serif;color:var(--chakra);font-size:1.5rem}
+    .hero p{margin-top:10px;color:var(--muted)}
+
+    .hero .hero-img{
+      width:100%;
+      border-radius:10px;
+      overflow:hidden;
+      box-shadow:0 6px 16px rgba(0,0,0,0.08);
+      height:220px;
+    }
+    .hero .hero-img img{width:100%;height:100%;object-fit:cover;display:block}
+
+    .btn-cta{display:inline-block;background:var(--green);color:white;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:600}
+
+    /* Sections */
+    section{
+      margin-top:26px;
+      background:var(--glass);
+      padding:20px;
+      border-radius:12px;
+      box-shadow:var(--card-shadow);
+    }
+    section h3{margin:0 0 8px 0;color:var(--green)}
+    .lead{color:#334155;margin-bottom:12px}
+
+    /* two-column utility */
+    .two-col{display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:start}
+
+    /* gallery */
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+    .gallery img{width:100%;height:160px;object-fit:cover;border-radius:10px;transition:transform .25s}
+    .gallery img:hover{transform:scale(1.03)}
+
+    /* responsive video wrapper */
+    .video-wrapper{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;box-shadow:0 6px 16px rgba(0,0,0,0.08)}
+    .video-wrapper iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+
+    /* map iframe */
+    .map-embed{width:100%;height:340px;border-radius:10px;overflow:hidden;box-shadow:0 6px 16px rgba(0,0,0,0.08)}
+
+    /* pledge and tree area */
+    .center{text-align:center}
+    #pledgeCount{margin-top:10px;font-weight:700;color:var(--green)}
+    #treeArea{min-height:80px;font-size:1.6rem;margin-top:14px;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center}
+
+    /* small animated tree emoji */
+    .tree-emoji{
+      display:inline-block;
+      transform-origin:center bottom;
+      animation:grow .6s ease forwards;
+      font-size:1.6rem;
+    }
+    @keyframes grow{
+      from{transform: translateY(12px) scale(0);opacity:0}
+      to{transform: translateY(0) scale(1);opacity:1}
+    }
+
+    /* feedback list */
+    .feedback-list{list-style:none;padding-left:0;margin-top:12px}
+    .feedback-list li{background:#fff;padding:10px;border-radius:8px;margin-bottom:8px;box-shadow:0 3px 10px rgba(0,0,0,0.04)}
+
+    /* footer */
+    footer{margin-top:28px;padding:22px 12px;background:linear-gradient(90deg,var(--green),#2e7d32);color:white;border-radius:8px}
+    .footer-inner{max-width:var(--max-width);margin:0 auto;text-align:center}
+
+    /* back-to-top */
+    .backtop{position:fixed;right:18px;bottom:18px;padding:10px 12px;background:var(--chakra);color:white;border-radius:10px;border:0;display:none;cursor:pointer;z-index:999}
+
+    /* Responsive */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .two-col{grid-template-columns:1fr}
+      nav{display:none;flex-direction:column;gap:6px;padding:10px;background:var(--glass);border-radius:8px}
+      .nav-toggle{display:inline-flex}
+      .header-inner{padding:10px}
+      .hero .hero-img{height:200px}
+    }
+    @media (max-width:420px){
+      .brand h1{font-size:1rem}
+      .hero .hero-img{height:160px}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-inner container">
+      <a class="brand" href="#top" aria-label="Save Environment Home">
+        <div class="logo">🇮🇳</div>
+        <div>
+          <h1 style="margin:0;font-size:1.05rem;font-family:'Merriweather',serif">Save Environment</h1>
+          <p style="margin:0;font-size:0.78rem">Clean India, Green India</p>
+        </div>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav">☰</button>
+
+      <nav id="main-nav" role="navigation" aria-label="Main navigation">
+        <a href="#renewable">Renewable</a>
+        <a href="#biodiversity">Biodiversity</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#media">Media</a>
+        <a href="#map">Map</a>
+        <a href="#pledge">Pledge</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page content -->
+  <main class="container" id="top">
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <h2 id="hero-title">Save Environment — Educational Awareness for India</h2>
+        <p class="lead">Learn about renewable energy, biodiversity, climate change, and practical steps you can take today. This site includes interactive actions so users can show commitment and participate.</p>
+        <p><a class="btn-cta" href="#pledge">Take the Green Pledge</a></p>
+      </div>
+
+      <div class="hero-img" aria-hidden="false">
+        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80" alt="Green landscape and trees">
+      </div>
+    </section>
+
+    <!-- Renewable -->
+    <section id="renewable" tabindex="0" aria-labelledby="renew-title">
+      <h3 id="renew-title">Renewable Energy in India</h3>
+      <p class="lead">Solar parks, wind farms, micro-hydro and biomass solutions are reshaping energy systems while reducing pollution.</p>
+
+      <div class="two-col" style="margin-top:10px">
+        <div>
+          <ul style="margin-left:16px;color:var(--muted)">
+            <li><strong>Solar:</strong> Rooftop & utility-scale PV reduce coal dependence.</li>
+            <li><strong>Wind:</strong> Offshore and onshore wind power growing rapidly.</li>
+            <li><strong>Storage:</strong> Batteries and smart grids stabilise renewables.</li>
+          </ul>
+        </div>
+
+        <aside style="background:white;padding:12px;border-radius:8px">
+          <strong>Citizen tips</strong>
+          <ul style="margin-left:16px;color:var(--muted)">
+            <li>Use LED lights and energy-star appliances.</li>
+            <li>Install rooftop solar if possible.</li>
+            <li>Reduce standby power use (unplug chargers).</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Biodiversity -->
+    <section id="biodiversity" tabindex="0">
+      <h3>Biodiversity & Conservation</h3>
+      <p class="lead">India is megadiverse — protecting habitats preserves livelihoods and culture. Programs like Project Tiger and community forestry work at local scales.</p>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" tabindex="0">
+      <h3>Green India Gallery</h3>
+      <p class="lead">Photos of nature, clean-energy projects and community action.</p>
+      <div class="gallery" aria-live="polite">
+        <img src="image copy.png" alt="Solar panels field">
+        <img src="image.png" alt="Tree planting event">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80" alt="Coastal ocean">
+        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=900&q=80" alt="Clean river bank">
+      </div>
+    </section>
+
+    <!-- Media (video + audio + virtual tree + feedback) -->
+    <section id="media" tabindex="0">
+      <h3>Media & Interactive Actions</h3>
+      <p class="lead">Watch, listen, pledge, plant a virtual tree and share your action.</p>
+
+      <div style="display:grid;grid-template-columns:1fr 340px;gap:18px;align-items:start">
+        <div>
+          <!-- Responsive video -->
+          <div class="video-wrapper" style="margin-bottom:12px">
+      <iframe
+    src="https://www.youtube.com/embed/GwKO0WOawtY?autoplay=1&mute=1&loop=1&playlist=GwKO0WOawtY"
+    title="Environmental Awareness"
+    allow="autoplay; encrypted-media"
+    allowfullscreen>
+  </iframe>
+          </div>
+
+          <div class="video-wrapper" style="margin-bottom:12px">
+             <iframe
+    src="https://www.youtube.com/embed/QQYgCxu988s?autoplay=1&mute=1&loop=1&playlist=QQYgCxu988s"
+    title="One Earth - Environmental Short Film"
+    allow="autoplay; encrypted-media"
+    allowfullscreen>
+  </iframe>
+          </div>
+
+          <!-- Audio players -->
+          <div style="margin-top:8px">
+            <strong>Audio: Inspiring tracks</strong>
+            <audio controls style="margin-top:8px">
+              <source src="Let's Take Bold Steps Forward to Protect Our Planet _ National Geographic [Er8YXskwIFE].mp3" type="audio/mpeg">
+              Your browser doesn't support audio.
+            </audio>
+            <audio controls style="margin-top:8px">
+              <source src="How We Can Keep Plastics Out of Our Ocean  National Geographic.mp3" type="audio/mpeg">
+            </audio>
+          </div>
+        </div>
+
+        <aside style="background:#fff;padding:14px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,0.04)">
+          <!-- Pledge -->
+          <div class="center">
+            <h4 style="margin:6px 0">🌍 Take the Green Pledge</h4>
+            <p style="margin:6px 0;color:var(--muted)">Commit to small daily changes for a cleaner India.</p>
+            <button id="pledgeBtn" style="background:var(--chakra);color:#fff;border:0;padding:10px 14px;border-radius:10px;cursor:pointer">I Pledge 🌱</button>
+            <div id="pledgeCount">🌿 0 People have pledged</div>
+          </div>
+
+          <hr style="margin:12px 0;border:none;border-top:1px solid #eee">
+
+          <!-- Virtual tree planting -->
+          <div class="center">
+            <h4 style="margin:6px 0">🌳 Plant a Virtual Tree</h4>
+            <p style="margin:6px 0;color:var(--muted)">Click to grow a symbolic tree — a fun reminder!</p>
+            <button id="plantBtn" style="background:var(--green);color:#fff;border:0;padding:8px 12px;border-radius:8px;cursor:pointer">Plant Tree</button>
+            <div id="treeArea" aria-live="polite"></div>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Feedback form -->
+      <div style="margin-top:16px;background:#fff;padding:12px;border-radius:10px;box-shadow:0 6px 16px rgba(0,0,0,0.04)">
+        <h4 style="margin:0 0 8px 0">💬 Share your eco-action</h4>
+        <form id="feedbackForm" style="display:grid;gap:8px">
+          <input id="fName" type="text" placeholder="Your name" required style="padding:8px;border-radius:8px;border:1px solid #ddd">
+          <textarea id="fAction" rows="3" placeholder="One small thing I do to help the environment..." required style="padding:8px;border-radius:8px;border:1px solid #ddd"></textarea>
+          <div style="display:flex;gap:8px">
+            <button type="submit" style="background:var(--chakra);color:#fff;border:0;padding:8px 12px;border-radius:8px;cursor:pointer">Submit</button>
+            <button type="button" id="clearBtn" style="background:#eee;border:0;padding:8px 12px;border-radius:8px;cursor:pointer">Clear</button>
+          </div>
+        </form>
+
+        <ul id="submissions" class="feedback-list" aria-live="polite"></ul>
+      </div>
+    </section>
+
+    <!-- Map -->
+    <section id="map" tabindex="0">
+      <h3>Explore Green Zones (India)</h3>
+      <p class="lead">National parks, sanctuaries and ecological hotspots — quick overview.</p>
+      <div class="map-embed">
+        <!-- Using a general maps search embed to avoid reliance on a custom map id -->
+        <iframe src="https://www.google.com/maps?q=India+national+parks&z=5&output=embed" width="100%" height="100%" aria-label="Map of national parks in India"></iframe>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <h3 style="margin:0">Together for a Greener India</h3>
+      <p style="margin-top:8px;opacity:0.95">Learn, act, and spread awareness. Small daily choices create large collective impact.</p>
+      <p style="margin-top:6px;font-size:0.95rem;opacity:0.9">“The future depends on what you do today.” — Mahatma Gandhi</p>
+    </div>
+  </footer>
+
+  <button class="backtop" aria-label="Back to top">↑ Top</button>
+
+  <script>
+    // Mobile nav toggle
+    const nav = document.getElementById('main-nav');
+    const toggle = document.querySelector('.nav-toggle');
+    toggle.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      if (nav.style.display === 'flex' || nav.style.display === 'block') {
+        nav.style.display = '';
+      } else {
+        nav.style.display = (window.innerWidth <= 900) ? 'block' : 'flex';
+      }
+    });
+
+    // Make nav responsive on resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 900) {
+        nav.style.display = 'flex';
+      } else {
+        nav.style.display = ''; // let toggle control it
+      }
+    });
+
+    // IntersectionObserver to highlight active nav link
+    const sections = document.querySelectorAll('main section[id]');
+    const navLinks = document.querySelectorAll('nav a');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const id = entry.target.id;
+        const link = document.querySelector(`nav a[href="#${id}"]`);
+        if (entry.isIntersecting) {
+          navLinks.forEach(a => a.classList.remove('active'));
+          if (link) link.classList.add('active');
+        }
+      });
+    }, { threshold: 0.55 });
+
+    sections.forEach(s => obs.observe(s));
+
+    // Back to top button
+    const back = document.querySelector('.backtop');
+    window.addEventListener('scroll', () => {
+      back.style.display = window.scrollY > 300 ? 'block' : 'none';
+    });
+    back.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // Pledge counter (persist in localStorage)
+    const pledgeBtn = document.getElementById('pledgeBtn');
+    const pledgeCountEl = document.getElementById('pledgeCount');
+    let pledgeCount = Number(localStorage.getItem('saveenv_pledge') || 0);
+    const updatePledgeUI = () => { pledgeCountEl.textContent = `🌿 ${pledgeCount} People have pledged`; };
+    updatePledgeUI();
+
+    pledgeBtn.addEventListener('click', () => {
+      pledgeCount++;
+      localStorage.setItem('saveenv_pledge', pledgeCount);
+      updatePledgeUI();
+      // small confirmation
+      pledgeBtn.textContent = 'Thanks — pledged ✅';
+      setTimeout(() => pledgeBtn.textContent = 'I Pledge 🌱', 1400);
+    });
+
+    // Virtual tree planting (animated emoji)
+    const plantBtn = document.getElementById('plantBtn');
+    const treeArea = document.getElementById('treeArea');
+    plantBtn.addEventListener('click', () => {
+      const span = document.createElement('span');
+      span.className = 'tree-emoji';
+      span.textContent = '🌱';
+      treeArea.appendChild(span);
+      // optional: store count locally
+      const max = 60;
+      // keep tree area tidy
+      if (treeArea.children.length > max) {
+        treeArea.removeChild(treeArea.children[0]);
+      }
+    });
+
+    // Feedback form handling (append to list, optional persistence)
+    const form = document.getElementById('feedbackForm');
+    const submissions = document.getElementById('submissions');
+    const clearBtn = document.getElementById('clearBtn');
+
+    // load saved submissions (if any)
+    const saved = JSON.parse(localStorage.getItem('saveenv_feedback') || '[]');
+    saved.forEach(item => appendSubmission(item));
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('fName').value.trim();
+      const action = document.getElementById('fAction').value.trim();
+      if (!name || !action) return;
+      const entry = { name, action, ts: Date.now() };
+      appendSubmission(entry, true);
+      form.reset();
+    });
+
+    clearBtn.addEventListener('click', () => form.reset());
+
+    function appendSubmission(entry, save = false) {
+      const li = document.createElement('li');
+      const date = new Date(entry.ts || Date.now()).toLocaleString();
+      li.innerHTML = `<strong>${escapeHtml(entry.name)}</strong> <small style="color:#666">• ${date}</small><div style="margin-top:6px;color:#222">${escapeHtml(entry.action)}</div>`;
+      submissions.prepend(li);
+      if (save) {
+        saved.unshift(entry);
+        localStorage.setItem('saveenv_feedback', JSON.stringify(saved.slice(0,50))); // keep last 50
+      }
+    }
+
+    // small sanitize helper
+    function escapeHtml(s) {
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    // ensure initial nav display on load for wide screens
+    if (window.innerWidth > 900) nav.style.display = 'flex';
+  </script>
+</body>
+</html>
